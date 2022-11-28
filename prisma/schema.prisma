@@ -1,0 +1,17 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "rhel-openssl-1.0.x", "debian-openssl-1.0.x", "darwin-arm64"]
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Test {
+  id   String @id @default(uuid())
+  name String
+  age  Int?
+
+  @@map("test")
+}
