@@ -8,16 +8,6 @@ provider:
   name: aws
   runtime: nodejs16.x
   region: 'sa-east-1'
-  vpc:
-    securityGroupIds:
-      - sg-06b59a382b60067c4
-      - sg-0a06b65bdfd465541
-      - sg-0a6dff02d5d90f26e
-    subnetIds:
-      - subnet-0f089c3ab61895ca0
-      - subnet-0cb9266d131939448
-      - subnet-0c8fdd185d0ed9fa5
-
 custom:
   dotenv:
     path: .env
