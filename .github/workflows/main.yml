@@ -31,17 +31,17 @@ jobs:
           DATABASE_URL: ${{ secrets.PRISMA_URL }}
         run: npx prisma db push
 
-      - name: Create .env file
-        run: touch .env
+      - name: Create env file
+        run: touch env.yml
 
       - name: Set DATABASE_URL
-        run: echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" >> .env
+        run: echo "DATABASE_URL: ${{ secrets.DATABASE_URL }}" >> env.yml
 
       - name: Set JWT_SECRET
-        run: echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> .env
+        run: echo "JWT_SECRET: ${{ secrets.JWT_SECRET }}" >> env.yml
 
-      - name: cat .env data
-        run: cat .env
+      - name: cat env data
+        run: cat env.yml
 
       - name: Deploy to AWS
         run: export NODE_ENV=production && npm run deploy:production

@@ -2,15 +2,16 @@ service: aws-node-http-api-project
 plugins:
   - serverless-esbuild
   - serverless-offline
-  - serverless-dotenv-plugin
+  
 
 provider:
   name: aws
   runtime: nodejs16.x
   region: 'sa-east-1'
+  environment: ${file(./env.yml)}
+
+
 custom:
-  dotenv:
-    path: .env
   esbuild:
     bundle: true
     minify: true
@@ -27,6 +28,7 @@ package:
     - 'node_modules/.prisma/client/schema.prisma'
 
 functions:
+  
   findUser:
     handler: src/routes/users/index.findUser
     events:
