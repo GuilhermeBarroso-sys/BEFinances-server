@@ -35,10 +35,10 @@ jobs:
         run: touch env.yml
 
       - name: Set DATABASE_URL
-        run: echo "DATABASE_URL: ${{ secrets.DATABASE_URL }}" >> env.yml
+        run: echo "DATABASE_URL:${{ secrets.DATABASE_URL }}" >> env.yml
 
       - name: Set JWT_SECRET
-        run: echo "JWT_SECRET: ${{ secrets.JWT_SECRET }}" >> env.yml
+        run: echo "JWT_SECRET:${{ secrets.JWT_SECRET }}" >> env.yml
 
       - name: cat env data
         run: cat env.yml
