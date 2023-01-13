@@ -23,6 +23,7 @@ class FindBudgetController {
 				statusCode: 200
 			});
 		} catch(err) {
+			console.log(err.message);
 
 			const {body,statusCode} = Error.handlerError(err);
 			return ApiGateway.response({body,statusCode});

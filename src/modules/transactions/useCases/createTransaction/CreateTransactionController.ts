@@ -25,6 +25,8 @@ class CreateTransactionController {
 				statusCode: 201
 			});
 		} catch(err) {
+			console.log(err.message);
+      
 			const {body, statusCode} = Error.handlerError(err);
 			return ApiGateway.response({
 				body,statusCode

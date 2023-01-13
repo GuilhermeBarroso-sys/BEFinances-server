@@ -23,6 +23,7 @@ class AuthenticationMiddleware implements IMiddlewares {
 			const {userId}  = verify(token, process.env.JWT_SECRET) as IJWTPayload;
 			event.user_id = userId;
 		} catch(err) {
+			console.log(err.message);
 			return ApiGateway.response({
 				body: 'Unauthorized',
 				statusCode: 401

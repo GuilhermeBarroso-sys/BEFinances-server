@@ -24,6 +24,7 @@ class CreateUserController {
 			});
 
 		} catch (err) {
+			console.log(err);
 			const {body, statusCode} = Error.handlerError(err);
 
 			return ApiGateway.response({

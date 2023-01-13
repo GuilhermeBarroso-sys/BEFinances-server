@@ -21,7 +21,8 @@ class AuthenticateUserController {
 			return ApiGateway.response({
 				body: user
 			});
-		} catch(err) { 
+		} catch(err) {
+			console.log(err.message); 
 			const {body,statusCode} = Error.handlerError(err);
 			return ApiGateway.response({
 				body,
