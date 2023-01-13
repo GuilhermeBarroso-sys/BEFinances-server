@@ -24,6 +24,8 @@ class CreateUserController {
 			});
 
 		} catch (err) {
+			console.log('envs =>', process.env,process.env.JWT_SECRET, process.env.DATABASE_URL);
+
 			console.log(err);
 			const {body, statusCode} = Error.handlerError(err);
 

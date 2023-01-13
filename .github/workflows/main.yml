@@ -25,6 +25,11 @@ jobs:
         env:
           CI: true
         run: npm ci    
+        
+      - name: Sync prisma
+        env:
+          DATABASE_URL: ${{ secrets.PRISMA_URL }}
+        run: npx prisma db push
 
       - name: Create .env file
         run: touch .env
@@ -37,11 +42,6 @@ jobs:
 
       - name: cat .env data
         run: cat .env
-
-      - name: Sync prisma
-        env:
-          DATABASE_URL: ${{ secrets.PRISMA_URL }}
-        run: npx prisma db push
 
       - name: Deploy to AWS
         run: export NODE_ENV=production && npm run deploy:production
