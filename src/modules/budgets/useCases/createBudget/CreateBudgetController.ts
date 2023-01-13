@@ -26,6 +26,7 @@ class CreateBudgetController {
 				statusCode:201 
 			});
 		} catch( err) {
+			console.log('envs =>', process.env.JWT_SECRET, process.env.DATABASE_URL);
 			console.log(err.message);
 			const {body,statusCode} = Error.handlerError(err);
 			return ApiGateway.response({body,statusCode});
