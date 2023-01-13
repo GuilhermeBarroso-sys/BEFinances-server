@@ -19,6 +19,8 @@ class CreateUserController {
 				});
 			}
 			await this.createUserUseCase.execute({username,email,password});
+			console.log(`envs ===>`, process.env);
+			console.log(`test`, process.env.JWT_SECRET);
 			return ApiGateway.response({
 				statusCode: 201
 			});
