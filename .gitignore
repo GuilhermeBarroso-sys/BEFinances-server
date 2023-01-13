@@ -102,3 +102,26 @@ dist
 
 # TernJS port file
 .tern-port
+
+
+# package directories
+node_modules
+jspm_packages
+
+# esbuild typescript
+.esbuild
+# Serverless directories
+.serverless
+
+# Mac
+.DS_Store
+
+# enviroment variables
+.env
+
+# jest
+coverage
+
+
+# Test files
+test.js

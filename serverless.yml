@@ -1,0 +1,87 @@
+service: aws-node-http-api-project
+plugins:
+  - serverless-esbuild
+  - serverless-offline
+  - serverless-dotenv-plugin
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+  region: 'sa-east-1'
+  vpc:
+    securityGroupIds:
+      - sg-06b59a382b60067c4
+      - sg-0a06b65bdfd465541
+      - sg-0a6dff02d5d90f26e
+    subnetIds:
+      - subnet-0f089c3ab61895ca0
+      - subnet-0cb9266d131939448
+      - subnet-0c8fdd185d0ed9fa5
+
+custom:
+  dotenv:
+    path: .env
+  esbuild:
+    bundle: true
+    minify: true
+    watch:
+      pattern: ['./','src/**/*.ts']
+package: 
+  individually: true
+  patterns:
+    - '!node_modules/.prisma/client/libquery_engine-*'
+    - 'node_modules/.prisma/client/libquery_engine-rhel-*'
+    - 'node_modules/.prisma/client/libquery_engine-debian-*'
+    - 'node_modules/.prisma/client/libquery_engine-darwin*'
+    - '!node_modules/prisma/libquery_engine-*'
+    - 'node_modules/.prisma/client/schema.prisma'
+
+functions:
+  findUser:
+    handler: src/routes/users/index.findUser
+    events:
+      - httpApi:
+          path: /users/{userId}
+          method: get
+
+  authenticateUser:
+    handler: src/routes/users/index.authenticateUser
+    events:
+      - httpApi:
+          path: /users/authenticate
+          method: post
+
+  createUser:
+      handler: src/routes/users/index.createUser
+      events:
+        - httpApi:
+            path: /users
+            method: post
+
+  findAllTransactions:
+    handler: src/routes/transactions/index.findAllTransactionsByUserId
+    events:
+      - httpApi:
+          path: /users/transactions/{userId}
+          method: get
+          
+  createTransaction:
+    handler: src/routes/transactions/index.createTransaction
+    events:
+      - httpApi:
+          path: /users/transactions
+          method: post
+
+  createBudget:
+    handler: src/routes/budgets/index.createBudget
+    events:
+      - httpApi:
+          path: /users/budgets
+          method: post
+  
+  findBudget:
+    handler: src/routes/budgets/index.findBudget
+    events:
+      - httpApi:
+          path: /users/budgets/{userId}
+          method: get
