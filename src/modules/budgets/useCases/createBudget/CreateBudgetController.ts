@@ -11,6 +11,7 @@ class CreateBudgetController {
 		const {month,year, amount} = JSON.parse(event.body);
 		const {user_id} = event;
 		try {
+
 			const {error, message} = Validator.isValid({month,year,amount,user_id}, schema);
 			if(error) {
 				return ApiGateway.response({statusCode: 400, body: message});
@@ -25,6 +26,7 @@ class CreateBudgetController {
 				statusCode:201 
 			});
 		} catch( err) {
+			console.log(err.message);
 			const {body,statusCode} = Error.handlerError(err);
 			return ApiGateway.response({body,statusCode});
 		}
