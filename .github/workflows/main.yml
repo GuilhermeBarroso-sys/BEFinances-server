@@ -4,7 +4,7 @@ name: Deploy
 on:
   push:
     branches:
-      - serverless
+      - dev
 
 jobs:
   deploy_lambda:
