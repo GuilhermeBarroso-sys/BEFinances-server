@@ -31,19 +31,14 @@ jobs:
         run: touch .env
 
       - name: Set DATABASE_URL
-        uses: enfuzion/env-file-action@v1
-        with:
-          path: .env
-          key: DATABASE_URL
-          value: ${{ secrets.DATABASE_URL }}
+        run: echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" >> .env
 
       - name: Set JWT_SECRET
-        uses: enfuzion/env-file-action@v1
-        with:
-          path: .env
-          key: JWT_SECRET
-          value: ${{ secrets.JWT_SECRET }}
-          
+        run: echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> .env
+
+      - name: cat .env data
+      - run: cat .env
+      
       - name: Sync prisma
         env:
           DATABASE_URL: ${{ secrets.PRISMA_URL }}
