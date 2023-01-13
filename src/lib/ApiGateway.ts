@@ -5,17 +5,18 @@ interface ApiGatewayParameters {
 }
 
 class ApiGateway {
-	static response({body = undefined, statusCode = 400, headers = null} : ApiGatewayParameters) {
+	static response({body = undefined, statusCode = 200, headers = null} : ApiGatewayParameters) {
 		return {
 			headers: headers ? headers : {
 				'Access-Control-Allow-Origin': '*',
 				'Access-Control-Allow-Credentials': true,
+				'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE'
 			},
-			body: JSON.stringify(body, (key, value) =>
+			body: body ? JSON.stringify(body, (key, value) =>
 				typeof value === 'bigint'
 					? value.toString()
 					: value 
-			),
+			) : JSON.stringify(null),
 			statusCode
 		};
 	}

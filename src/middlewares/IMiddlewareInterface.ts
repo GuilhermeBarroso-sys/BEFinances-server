@@ -1,7 +1,7 @@
 import middy from "@middy/core";
 
 export interface IMiddlewareAttributes {
-	userIdExample: string
+	user_id: string | undefined
 }
 
 

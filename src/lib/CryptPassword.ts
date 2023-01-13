@@ -1,11 +1,11 @@
 import crypto from "crypto";
 
 class CryptPassword {
-	constructor(private password : string) {}
+	constructor(private rawPassword : string) {}
 	async hash() : Promise<string>{
 		return new Promise((resolve, reject) => {
 			const salt = crypto.randomBytes(16).toString("hex");
-			crypto.scrypt(this.password, salt, 64, (err, derivedKey) => {
+			crypto.scrypt(this.rawPassword, salt, 64, (err, derivedKey) => {
 				if (err) reject(err);
 				resolve(salt + ":" + derivedKey.toString('hex'));
 			});
@@ -13,10 +13,9 @@ class CryptPassword {
 	}
 
 	async check(hashedPassword : string) {
-	
 		return new Promise((resolve, reject) => {
 			const [salt, key] = hashedPassword.split(":");
-			crypto.scrypt(this.password, salt, 64, (err, derivedKey) => {
+			crypto.scrypt(this.rawPassword, salt, 64, (err, derivedKey) => {
 				if (err) reject(err);
 				resolve(key === derivedKey.toString('hex'));
 			});

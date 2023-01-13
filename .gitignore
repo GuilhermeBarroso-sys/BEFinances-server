@@ -12,3 +12,10 @@ jspm_packages
 
 # enviroment variables
 .env
+
+# jest
+coverage
+
+
+# Test files
+test.js

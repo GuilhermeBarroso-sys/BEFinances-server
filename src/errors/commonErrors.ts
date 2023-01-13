@@ -35,5 +35,10 @@ export const commonErrors =  [
 		errorName: "unauthorized",
 		statusCode: 401,
 		body: "unauthorized"
+	},
+	{
+		errorName: "weakPassword",
+		statusCode: 400,
+		body: "Password has to be 6 or more characters"
 	}
 ];
