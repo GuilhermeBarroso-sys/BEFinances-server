@@ -31,13 +31,15 @@ jobs:
         run: touch .env
 
       - name: Set DATABASE_URL
-        env-file-action:
+        uses: enfuzion/env-file-action@v1
+        with:
           path: .env
           key: DATABASE_URL
           value: ${{ secrets.DATABASE_URL }}
 
       - name: Set JWT_SECRET
-        env-file-action:
+        uses: enfuzion/env-file-action@v1
+        with:
           path: .env
           key: JWT_SECRET
           value: ${{ secrets.JWT_SECRET }}
