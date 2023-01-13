@@ -27,11 +27,23 @@ jobs:
           CI: true
         run: npm ci    
 
-      - name: Create environment file
-        run: echo "JWT_SECRET=${{ secrets.JWT_SECRET }}\nDATABASE_URL=${{ secrets.DATABASE_URL }}" > .env
+      - name: Create .env file
+        run: touch .env
 
-      - name: show files
-        run: ls
+      - name: Set DATABASE_URL
+        env-file-action:
+          path: .env
+          key: DATABASE_URL
+          value: ${{ secrets.DATABASE_URL }}
+
+      - name: Set JWT_SECRET
+        env-file-action:
+          path: .env
+          key: JWT_SECRET
+          value: ${{ secrets.JWT_SECRET }}
+
+      - name: cat the env file
+        run: cat .env
 
       - name: Sync prisma
         env:
