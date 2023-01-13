@@ -37,8 +37,8 @@ jobs:
         run: echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> .env
 
       - name: cat .env data
-      - run: cat .env
-      
+        run: cat .env
+
       - name: Sync prisma
         env:
           DATABASE_URL: ${{ secrets.PRISMA_URL }}
