@@ -55,6 +55,13 @@ functions:
       - httpApi:
           path: /users/transactions/{userId}
           method: get
+
+  findAllTransactionsByCategory:
+    handler: src/routes/transactions/index.findAllTransactionsByCategory
+    events:
+      - httpApi:
+          path: /users/transactions/category/{userId}
+          method: get
           
   createTransaction:
     handler: src/routes/transactions/index.createTransaction

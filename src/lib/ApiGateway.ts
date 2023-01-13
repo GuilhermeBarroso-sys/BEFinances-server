@@ -16,7 +16,7 @@ class ApiGateway {
 				typeof value === 'bigint'
 					? value.toString()
 					: value 
-			) : JSON.stringify(null),
+			) : '',
 			statusCode
 		};
 	}
