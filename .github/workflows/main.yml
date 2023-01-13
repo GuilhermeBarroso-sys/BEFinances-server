@@ -41,10 +41,7 @@ jobs:
           path: .env
           key: JWT_SECRET
           value: ${{ secrets.JWT_SECRET }}
-
-      - name: cat the env file
-        run: cat .env
-
+          
       - name: Sync prisma
         env:
           DATABASE_URL: ${{ secrets.PRISMA_URL }}
