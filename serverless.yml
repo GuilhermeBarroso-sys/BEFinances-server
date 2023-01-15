@@ -31,55 +31,63 @@ functions:
   findUser:
     handler: src/routes/users/index.findUser
     events:
-      - httpApi:
+      - http:
           path: /users/{userId}
           method: get
+          cors: true
 
   authenticateUser:
     handler: src/routes/users/index.authenticateUser
     events:
-      - httpApi:
+      - http:
           path: /users/authenticate
           method: post
+          cors: true
 
   createUser:
       handler: src/routes/users/index.createUser
       events:
-        - httpApi:
+        - http:
             path: /users
             method: post
+            cors: true
 
   findAllTransactions:
     handler: src/routes/transactions/index.findAllTransactionsByUserId
     events:
-      - httpApi:
+      - http:
           path: /users/transactions/{userId}
           method: get
+          cors: true
 
   findAllTransactionsByCategory:
     handler: src/routes/transactions/index.findAllTransactionsByCategory
     events:
-      - httpApi:
+      - http:
           path: /users/transactions/category/{userId}
           method: get
+          cors: true
           
   createTransaction:
     handler: src/routes/transactions/index.createTransaction
     events:
-      - httpApi:
+      - http:
           path: /users/transactions
           method: post
+          cors: true
 
   createBudget:
     handler: src/routes/budgets/index.createBudget
     events:
-      - httpApi:
+      - http:
           path: /users/budgets
           method: post
+          cors: true
   
   findBudget:
     handler: src/routes/budgets/index.findBudget
     events:
-      - httpApi:
+      - http:
           path: /users/budgets/{userId}
           method: get
+          cors: true
