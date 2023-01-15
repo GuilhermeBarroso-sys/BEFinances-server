@@ -7,10 +7,9 @@ interface ApiGatewayParameters {
 class ApiGateway {
 	static response({body = undefined, statusCode = 200, headers = null} : ApiGatewayParameters) {
 		return {
-			headers: headers ? headers : {
+			headers : {
 				'Access-Control-Allow-Origin': '*',
 				'Access-Control-Allow-Credentials': true,
-				'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE'
 			},
 			body: body ? JSON.stringify(body, (key, value) =>
 				typeof value === 'bigint'
