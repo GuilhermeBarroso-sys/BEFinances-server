@@ -1,6 +1,4 @@
 service: aws-node-http-api-project
-org: guilhermebarroso
-app: befinances
 plugins:
   - serverless-esbuild
   - serverless-offline
