@@ -24,7 +24,7 @@ class FindAllTransactionsByCategoryController {
 			return ApiGateway.response({body: transactions, statusCode: 200});
 		} catch( err ){
 			const {body, statusCode} = Error.handlerError(err);
-
+			console.log(err.message);
 			return ApiGateway.response({body, statusCode});
 		}
 	}
