@@ -20,10 +20,9 @@ class TransactionRepository implements ITransactionRepository {
 	}
 
 	async create({data}: ICreateTransaction) : Promise<void>  {
-		const a = await prisma.transaction.create({
+		await prisma.transaction.create({
 			data
 		});
-		console.log(a.date, a.user_id);
 	}
 }
 
