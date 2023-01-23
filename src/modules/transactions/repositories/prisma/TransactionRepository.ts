@@ -15,7 +15,7 @@ class TransactionRepository implements ITransactionRepository {
 	async findAllTransactionsByUserId({ userId , options : {  date = undefined,limit = undefined,offset = undefined} }: IFindAllTransactionsByUserIdParams) {
 		const handleData = date ? `AND date BETWEEN '${date.start_date} 00:00:00' AND '${date.end_date} 23:59:59' `: "";
 		const handleLimit = limit ? ` LIMIT ${limit}` : "";
-		const handleOffset = limit ? ` OFFSET ${offset}` : "";
+		const handleOffset = offset ? ` OFFSET ${offset}` : "";
 		return await prisma.$queryRawUnsafe<ITransaction[]>(`SELECT * FROM transactions WHERE user_id = '${userId}' ${handleData} ${handleLimit} ${handleOffset}`);
 	}
 
