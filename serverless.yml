@@ -56,7 +56,8 @@ functions:
     handler: src/routes/transactions/index.findAllTransactionsByUserId
     events:
       - http:
-          path: /users/transactions/{userId}
+          path: /users/transactions/{transaction_userId}
+          # Reason of this strange pathId: https://github.com/serverless/serverless/issues/3785
           method: get
           cors: true
 
@@ -64,7 +65,9 @@ functions:
     handler: src/routes/transactions/index.findAllTransactionsByCategory
     events:
       - http:
-          path: /users/transactions/category/{userId}
+          path: /users/transactions/category/{category_userId}
+          # Reason of this strange pathId: https://github.com/serverless/serverless/issues/3785
+
           method: get
           cors: true
           
