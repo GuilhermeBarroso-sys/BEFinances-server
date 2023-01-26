@@ -8,7 +8,7 @@ import { schema } from "./validation/schema";
 class FindAllTransactionsByUserIdController {
 	constructor(private findAllTransactionsByUserIdUseCase : FindAllTransactionsByUserIdUseCase) {}
 	async handle(event : EventLambda) {
-		const {transaction_userId : userId} = event.pathParameters;
+		const {userId} = event.pathParameters;
 		const params = event.queryStringParameters;
 		try {
 			const {error, message } = Validator.isValid({userId, start_date: params?.start_date, end_date: params?.end_date, limit: params?.limit, offset: params?.offset}, schema);
