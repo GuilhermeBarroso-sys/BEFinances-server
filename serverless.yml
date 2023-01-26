@@ -27,86 +27,86 @@ package:
     - '!node_modules/prisma/libquery_engine-*'
     - 'node_modules/.prisma/client/schema.prisma'
 
-functions:
-  findUser:
-    handler: src/routes/users/index.findUser
-    events:
-      - http:
-          path: /users/{userId}
-          method: get
-          cors: true
+# functions:
+#   findUser:
+#     handler: src/routes/users/index.findUser
+#     events:
+#       - http:
+#           path: /users/{userId}
+#           method: get
+#           cors: true
 
-  authenticateUser:
-    handler: src/routes/users/index.authenticateUser
-    events:
-      - http:
-          path: /users/authenticate
-          method: post
-          cors: true
+#   authenticateUser:
+#     handler: src/routes/users/index.authenticateUser
+#     events:
+#       - http:
+#           path: /users/authenticate
+#           method: post
+#           cors: true
 
-  createUser:
-      handler: src/routes/users/index.createUser
-      events:
-        - http:
-            path: /users
-            method: post
-            cors: true
+#   createUser:
+#       handler: src/routes/users/index.createUser
+#       events:
+#         - http:
+#             path: /users
+#             method: post
+#             cors: true
 
-  findAllTransactions:
-    handler: src/routes/transactions/index.findAllTransactionsByUserId
-    events:
-      - http:
-          path: /users/transactions/{transaction_userId}
-          # Reason of this strange pathId: https://github.com/serverless/serverless/issues/3785
-          method: get
-          cors: true
+#   findAllTransactions:
+#     handler: src/routes/transactions/index.findAllTransactionsByUserId
+#     events:
+#       - http:
+#           path: /users/transactions/{transaction_userId}
+#           # Reason of this strange pathId: https://github.com/serverless/serverless/issues/3785
+#           method: get
+#           cors: true
 
-  findAllTransactionsByCategory:
-    handler: src/routes/transactions/index.findAllTransactionsByCategory
-    events:
-      - http:
-          path: /users/transactions/category/{category_userId}
-          # Reason of this strange pathId: https://github.com/serverless/serverless/issues/3785
+#   findAllTransactionsByCategory:
+#     handler: src/routes/transactions/index.findAllTransactionsByCategory
+#     events:
+#       - http:
+#           path: /users/transactions/category/{category_userId}
+#           # Reason of this strange pathId: https://github.com/serverless/serverless/issues/3785
 
-          method: get
-          cors: true
+#           method: get
+#           cors: true
           
-  createTransaction:
-    handler: src/routes/transactions/index.createTransaction
-    events:
-      - http:
-          path: /users/transactions
-          method: post
-          cors: true
+#   createTransaction:
+#     handler: src/routes/transactions/index.createTransaction
+#     events:
+#       - http:
+#           path: /users/transactions
+#           method: post
+#           cors: true
 
-  createBudget:
-    handler: src/routes/budgets/index.createBudget
-    events:
-      - http:
-          path: /users/budgets
-          method: post
-          cors: true
+#   createBudget:
+#     handler: src/routes/budgets/index.createBudget
+#     events:
+#       - http:
+#           path: /users/budgets
+#           method: post
+#           cors: true
   
-  findBudget:
-    handler: src/routes/budgets/index.findBudget
-    events:
-      - http:
-          path: /users/budgets
-          method: get
-          cors: true
+#   findBudget:
+#     handler: src/routes/budgets/index.findBudget
+#     events:
+#       - http:
+#           path: /users/budgets
+#           method: get
+#           cors: true
 
-  deleteTransaction:
-    handler: src/routes/transactions/index.deleteTransaction
-    events:
-      - http:
-          path: /users/transactions/{transactionId}
-          method: delete
-          cors: true
+#   deleteTransaction:
+#     handler: src/routes/transactions/index.deleteTransaction
+#     events:
+#       - http:
+#           path: /users/transactions/{transactionId}
+#           method: delete
+#           cors: true
   
-  deleteBudget:
-    handler: src/routes/budgets/index.deleteBudget
-    events:
-      - http:
-          path: /users/budgets/{budgetId}
-          method: delete
-          cors: true
+#   deleteBudget:
+#     handler: src/routes/budgets/index.deleteBudget
+#     events:
+#       - http:
+#           path: /users/budgets/{budgetId}
+#           method: delete
+#           cors: true
