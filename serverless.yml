@@ -1,4 +1,4 @@
-service: aws-node-http-api-project
+service: aws-befinances
 plugins:
   - serverless-esbuild
   - serverless-offline
