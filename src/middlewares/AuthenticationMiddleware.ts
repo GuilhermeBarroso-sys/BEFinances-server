@@ -10,7 +10,7 @@ interface IJWTPayload {
 }
 class AuthenticationMiddleware implements IMiddlewares {
 	before ({event}: middy.Request<EventLambda, any, Error, any>) {
-		const authorizationToken = event.headers.Authorization;
+		const authorizationToken = event.headers.authorization;
 		if(!authorizationToken) {
 	
 			return ApiGateway.response({
