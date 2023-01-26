@@ -91,3 +91,19 @@ functions:
           path: /users/budgets/{userId}
           method: get
           cors: true
+
+  deleteTransaction:
+    handler: src/routes/transactions/index.deleteTransaction
+    events:
+      - http:
+          path: /users/transactions/{transactionId}
+          method: delete
+          cors: true
+  
+  deleteBudget:
+    handler: src/routes/budgets/index.deleteBudget
+    events:
+      - http:
+          path: /users/budgets/{budgetId}
+          method: delete
+          cors: true

@@ -1,5 +1,5 @@
 import { prisma } from "../../../../prisma";
-import {  ITransaction, ITransactionRepository, IFindAllTransactionsByUserIdParams, ICreateTransaction, IFindAllTransactionsByCategoryParams, ITransactionByCategory } from "../ITransactionRepository";
+import {  ITransaction, ITransactionRepository, IFindAllTransactionsByUserIdParams, ICreateTransaction, IFindAllTransactionsByCategoryParams, ITransactionByCategory, IDelete } from "../ITransactionRepository";
 
 class TransactionRepository implements ITransactionRepository {
 	async findAllTransactionsByCategory (params: IFindAllTransactionsByCategoryParams) {
@@ -23,6 +23,10 @@ class TransactionRepository implements ITransactionRepository {
 		await prisma.transaction.create({
 			data
 		});
+	}
+
+	async delete ({ transactionId }: IDelete) : Promise<void> {
+		await prisma.$queryRaw`DELETE FROM transactions WHERE id = ${transactionId}`;
 	}
 }
 

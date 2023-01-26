@@ -20,7 +20,12 @@ export interface IFindBudgetParams {
 	month: string,
 	year: string,
 }
+
+export interface IDeleteBudget {
+	budgetId: string
+}
 export interface IBudgetRepository {
 	create: (data: ICreateBudget) => Promise<void>
-	findBudget: (data : IFindBudgetParams) => Promise<IBudget|IBudget[]>
+	findBudget: (data : IFindBudgetParams) => Promise<IBudget[]>
+	deleteBudget: (data : IDeleteBudget) => Promise<void>
 }

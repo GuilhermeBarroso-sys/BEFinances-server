@@ -9,9 +9,18 @@ import { budgetMock } from "../../../../../mocks/modules/budgets/budgetMock";
 
 describe("Testing Create Budget Use Case", () => {
 	
-	it("Should create a budget without error", async () => {
+	it("Should throw an error because already exists a budget", async () => {
 	
 		const budgetRepository = budgetRepositoryMock({config: {emptyBudget: false}});
+    
+		const createBudgetUseCase = new CreateBudgetUseCase(budgetRepository);
+		await expect(async () => {await createBudgetUseCase.execute({data: budgetMock()});}).rejects.toThrow();
+
+	});
+	it("Should create a budget without error", async () => {
+	
+		const budgetRepository = budgetRepositoryMock({config: {emptyBudget: true}});
+
 		const createBudgetUseCase = new CreateBudgetUseCase(budgetRepository);
 		const response = await createBudgetUseCase.execute({data: budgetMock()});
 		expect(response).toBe(undefined);
