@@ -88,7 +88,7 @@ functions:
     handler: src/routes/budgets/index.findBudget
     events:
       - http:
-          path: /users/budgets/{userId}
+          path: /users/budgets
           method: get
           cors: true
 
