@@ -8,7 +8,7 @@ class TransactionRepository implements ITransactionRepository {
 		date.end_date = date.end_date + " 23:59:59";
 		const {start_date,end_date} = date;
 		console.log(start_date, end_date);
-		const transactionsByCategory = await prisma.$queryRaw<ITransactionByCategory[]>`SELECT SUM(amount) as total, category FROM transactions WHERE user_id = ${userId} AND date BETWEEN ${start_date} AND ${end_date}  group by category ORDER BY date DESC`;
+		const transactionsByCategory = await prisma.$queryRaw<ITransactionByCategory[]>`SELECT SUM(amount) as total, category FROM transactions WHERE user_id = ${userId} AND date BETWEEN ${start_date} AND ${end_date}  group by category`;
 		return transactionsByCategory;
 	} 
 
