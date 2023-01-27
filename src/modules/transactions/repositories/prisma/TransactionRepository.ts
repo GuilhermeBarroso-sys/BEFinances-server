@@ -8,7 +8,7 @@ class TransactionRepository implements ITransactionRepository {
 		date.end_date = date.end_date + " 23:59:59";
 		const {start_date,end_date} = date;
 		console.log(start_date, end_date);
-		const transactionsByCategory = await prisma.$queryRaw<ITransactionByCategory[]>`SELECT SUM(amount) as total, category FROM transactions WHERE user_id = ${userId} AND date BETWEEN ${start_date} AND ${end_date}  group by category`;
+		const transactionsByCategory = await prisma.$queryRaw<ITransactionByCategory[]>`SELECT SUM(amount) as total, category FROM transactions WHERE user_id = ${userId} AND date BETWEEN ${start_date} AND ${end_date}  group by category ORDER BY date DESC`;
 		return transactionsByCategory;
 	} 
 
@@ -16,7 +16,7 @@ class TransactionRepository implements ITransactionRepository {
 		const handleData = date ? `AND date BETWEEN '${date.start_date} 00:00:00' AND '${date.end_date} 23:59:59' `: "";
 		const handleLimit = limit ? ` LIMIT ${limit}` : "";
 		const handleOffset = offset ? ` OFFSET ${offset}` : "";
-		return await prisma.$queryRawUnsafe<ITransaction[]>(`SELECT * FROM transactions WHERE user_id = '${userId}' ${handleData} ${handleLimit} ${handleOffset}`);
+		return await prisma.$queryRawUnsafe<ITransaction[]>(`SELECT * FROM transactions WHERE user_id = '${userId}' ${handleData} ${handleLimit} ${handleOffset} ORDER BY date DESC`);
 	}
 
 	async create({data}: ICreateTransaction) : Promise<void>  {
