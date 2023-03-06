@@ -6,7 +6,7 @@
   "author": "Guilherme Barroso",
   "license": "MIT",
   "scripts": {
-    "test": "jest",
+    "test": "jest --silent",
     "dev": "sls offline --stage dev",
     "deploy:dev": "sls deploy --stage dev",
     "deploy:production": "sls deploy --stage prod"

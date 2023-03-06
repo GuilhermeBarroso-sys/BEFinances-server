@@ -1,6 +1,4 @@
-import { config } from 'dotenv';
 
-config();
 
 import {AuthenticateUserUseCase} from "../AuthenticateUserUseCase";
 import {userRepositoryMock} from "../../../../../mocks/modules/users/repositories/userRepositoryMock";
@@ -9,7 +7,11 @@ import { Validator } from "../../../../../lib/Validator";
 import { AuthenticateUserController } from "../AuthenticateUserController";
 
 describe("Testing Authenticate User Controller", () => {
+	beforeAll(() => {
+		process.env.JWT_SECRET = "test";
 
+	});
+	
 	it("shouldn't pass on validator", async () => {
 		jest.spyOn(Validator, "isValid").mockImplementation(() => {
 			return {

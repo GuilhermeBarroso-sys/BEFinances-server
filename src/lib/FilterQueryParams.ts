@@ -7,6 +7,7 @@ class FilterQueryParams {
 			take: !isNaN(take) ? take : undefined,
 			skip: !isNaN(skip) ? skip : undefined
 		};
+		//
 	}
 }
 

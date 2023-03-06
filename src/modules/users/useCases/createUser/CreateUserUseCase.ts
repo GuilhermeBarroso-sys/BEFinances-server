@@ -5,7 +5,7 @@ import { IUserCreate, IUserRepository } from "../../repositories/IUserRepository
 class CreateUserUseCase {
 	constructor(private userRepository : IUserRepository) {}
 
-	async execute({username,email,password} : IUserCreate) {
+	async execute({id, username,email,password} : IUserCreate) {
 		if(password.length < 6) {
 			throw createThrowError({
 				name: "customError",
@@ -15,6 +15,7 @@ class CreateUserUseCase {
 		}
 		const passwordHashed = await new CryptPassword(password).hash();
 		await this.userRepository.create({
+			id,
 			username,
 			email,
 			password: passwordHashed

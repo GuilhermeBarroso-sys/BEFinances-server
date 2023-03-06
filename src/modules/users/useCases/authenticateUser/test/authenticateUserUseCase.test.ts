@@ -1,6 +1,3 @@
-import { config } from 'dotenv';
-
-config();
 
 import {AuthenticateUserUseCase} from "../AuthenticateUserUseCase";
 import {userRepositoryMock} from "../../../../../mocks/modules/users/repositories/userRepositoryMock";

@@ -1,4 +1,4 @@
-import { IBudget, IBudgetRepository, ICreateBudget, IFindBudgetParams } from "../../../../modules/budgets/repositories/IBudgetRepository";
+import { IBudget, IBudgetRepository, ICreateBudget, IDeleteBudget, IFindBudgetParams } from "../../../../modules/budgets/repositories/IBudgetRepository";
 import { budgetMock } from "../budgetMock";
 
 interface IBudgetRepositoryMock {
@@ -12,11 +12,13 @@ export function budgetRepositoryMock({config : { emptyBudget = false}, throwErro
 	
 	return throwError ? {
 		findBudget: async (data : IFindBudgetParams) => {throw new Error("database error");},
-		create: async (data : ICreateBudget ) => {throw new Error("database error");}
+		create: async (data : ICreateBudget ) => {throw new Error("database error");},
+		deleteBudget: async (data : IDeleteBudget) => {throw new Error("database error");}
 	
 	} :{
-		findBudget: async (data : IFindBudgetParams) => {return budget;},
-		create: async (data : ICreateBudget ) => {}
+		findBudget: async (data : IFindBudgetParams) => {return !emptyBudget ? [budget] : [];},
+		create: async (data : ICreateBudget ) => {},
+		deleteBudget: async (data : IDeleteBudget) => {}
 	
 	};
 }

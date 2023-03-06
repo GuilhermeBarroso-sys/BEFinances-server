@@ -8,8 +8,8 @@ import { schema } from "./validation/schema";
 class FindBudgetController {
 	constructor(private findBudgetUseCase : FindBudgetUseCase) {}
 	async handle(event : EventLambda) {
-		const {userId : user_id} = event.pathParameters;
-
+		const {user_id} = event;
+		console.log(user_id);
 		const params = event.queryStringParameters;
 		try {
 	
@@ -23,6 +23,7 @@ class FindBudgetController {
 				statusCode: 200
 			});
 		} catch(err) {
+			console.log(err.message);
 
 			const {body,statusCode} = Error.handlerError(err);
 			return ApiGateway.response({body,statusCode});

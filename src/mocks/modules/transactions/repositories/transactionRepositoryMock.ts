@@ -1,7 +1,8 @@
 import { CryptPassword } from "../../../../lib/CryptPassword";
 import { Uuid } from "../../../../lib/Uuid";
-import { ICreateTransaction, IFindAllTransactionsByUserIdParams, ITransaction, ITransactionRepository } from "../../../../modules/transactions/repositories/ITransactionRepository";
+import { ICreateTransaction, IDelete, IFindAllTransactionsByCategoryParams, IFindAllTransactionsByUserIdParams, ITransaction, ITransactionRepository } from "../../../../modules/transactions/repositories/ITransactionRepository";
 import { IUserCreate, IUserRepository } from "../../../../modules/users/repositories/IUserRepository";
+import { findAllTransactionsByCategory } from "../../../../routes/transactions";
 import { transactionMock } from "../transactionMock";
 
 interface ITransactionRepositoryMock {
@@ -15,11 +16,16 @@ export function transactionRepositoryMock({config : { emptyTransaction = false},
 	
 	return throwError ? {
 		findAllTransactionsByUserId: async (options : IFindAllTransactionsByUserIdParams) => {throw new Error("database error");},
-		create: async (data : ICreateTransaction ) => {throw new Error("database error");}
+		create: async (data : ICreateTransaction ) => {throw new Error("database error");},
+		findAllTransactionsByCategory: async (data : IFindAllTransactionsByCategoryParams) => {throw new Error("database error");},
+		delete: async (data : IDelete) => {throw new Error("Database error");}
 	
 	} :{
 		findAllTransactionsByUserId: async (options : IFindAllTransactionsByUserIdParams) => {return [transaction];},
-		create: async (data : ICreateTransaction ) => {}
+		create: async (data : ICreateTransaction ) => {},
+		findAllTransactionsByCategory: async (data : IFindAllTransactionsByCategoryParams) => {return [{category: "servers", total: 3500.00}];},
+		delete: async (data : IDelete) => {}
+
 	
 	};
 }

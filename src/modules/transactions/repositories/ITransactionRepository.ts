@@ -30,8 +30,27 @@ export interface IFindAllTransactionsByUserIdParams {
 	userId : string
 	options : IQueryOptions
 }
+export interface IFindAllTransactionsByCategoryParams {
+	userId : string
+	date: {
+		start_date: string,
+		end_date: string,
+	},
+
+}
+
+export interface ITransactionByCategory {
+	category: string,
+	total: number
+}
+
+export interface IDelete {
+	transactionId: string
+}
+
 export interface ITransactionRepository {
 	findAllTransactionsByUserId: (params : IFindAllTransactionsByUserIdParams) => Promise<ITransaction[]>
 	create: (data: ICreateTransaction) => Promise<void>
-
+	findAllTransactionsByCategory: (params : IFindAllTransactionsByCategoryParams) => Promise<ITransactionByCategory[]>
+	delete: ({transactionId} : IDelete) => Promise<void>
 }

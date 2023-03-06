@@ -22,7 +22,7 @@ describe("Testing Create Transaction Controller", () => {
 		const response = await createBudgetController.handle(event);
 		expect(response.statusCode).toBe(400);
 	});
-	it("Should return status code 201 without error", async () => {
+	it("Should return status code 409", async () => {
 		jest.spyOn(Validator, "isValid").mockImplementation(() => {
 			return {
 				error: false,
@@ -32,6 +32,22 @@ describe("Testing Create Transaction Controller", () => {
 
 		const createBudgetUseCase = new CreateBudgetUseCase(budgetRepositoryMock({config : {
 			emptyBudget: false
+		}}));
+		const createBudgetController = new CreateBudgetController(createBudgetUseCase);
+		const event = lambdaEvent();
+		const response = await createBudgetController.handle(event);
+		expect(response.statusCode).toBe(409);
+	});
+	it("Should return status code 201 without error", async () => {
+		jest.spyOn(Validator, "isValid").mockImplementation(() => {
+			return {
+				error: false,
+				message: null
+			};
+		});
+
+		const createBudgetUseCase = new CreateBudgetUseCase(budgetRepositoryMock({config : {
+			emptyBudget: true
 		}}));
 		const createBudgetController = new CreateBudgetController(createBudgetUseCase);
 		const event = lambdaEvent();

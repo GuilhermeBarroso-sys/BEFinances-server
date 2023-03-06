@@ -26,6 +26,7 @@ class FindUserController {
 				body: user
 			});
 		} catch(err) {
+			console.log(err.message);
 			const {body,statusCode} = Error.handlerError(err);
 			return ApiGateway.response({
 				body,

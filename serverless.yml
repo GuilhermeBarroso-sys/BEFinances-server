@@ -1,4 +1,4 @@
-service: aws-node-http-api-project
+service: aws-befinances
 plugins:
   - serverless-esbuild
   - serverless-offline
@@ -8,16 +8,11 @@ provider:
   name: aws
   runtime: nodejs16.x
   region: 'sa-east-1'
-  vpc:
-    securityGroupIds:
-      - sg-06b59a382b60067c4
-      - sg-0a06b65bdfd465541
-      - sg-0a6dff02d5d90f26e
-    subnetIds:
-      - subnet-0f089c3ab61895ca0
-      - subnet-0cb9266d131939448
-      - subnet-0c8fdd185d0ed9fa5
+  httpApi:
+    cors: true
 
+
+  
 custom:
   dotenv:
     path: .env
@@ -44,12 +39,14 @@ functions:
           path: /users/{userId}
           method: get
 
+
   authenticateUser:
     handler: src/routes/users/index.authenticateUser
     events:
       - httpApi:
           path: /users/authenticate
           method: post
+
 
   createUser:
       handler: src/routes/users/index.createUser
@@ -58,12 +55,22 @@ functions:
             path: /users
             method: post
 
+
   findAllTransactions:
     handler: src/routes/transactions/index.findAllTransactionsByUserId
     events:
       - httpApi:
           path: /users/transactions/{userId}
           method: get
+
+
+  findAllTransactionsByCategory:
+    handler: src/routes/transactions/index.findAllTransactionsByCategory
+    events:
+      - httpApi:
+          path: /users/transactions/category/{userId}
+          method: get
+
           
   createTransaction:
     handler: src/routes/transactions/index.createTransaction
@@ -72,16 +79,34 @@ functions:
           path: /users/transactions
           method: post
 
+
   createBudget:
     handler: src/routes/budgets/index.createBudget
     events:
       - httpApi:
           path: /users/budgets
           method: post
+
   
   findBudget:
     handler: src/routes/budgets/index.findBudget
     events:
       - httpApi:
-          path: /users/budgets/{userId}
+          path: /users/budgets
           method: get
+
+
+  deleteTransaction:
+    handler: src/routes/transactions/index.deleteTransaction
+    events:
+      - httpApi:
+          path: /users/transactions/{transactionId}
+          method: delete
+
+  
+  deleteBudget:
+    handler: src/routes/budgets/index.deleteBudget
+    events:
+      - httpApi:
+          path: /users/budgets/{budgetId}
+          method: delete
