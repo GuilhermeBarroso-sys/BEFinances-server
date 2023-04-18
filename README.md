@@ -101,3 +101,8 @@ JWT_SECRET= 'some secret key to JWT'
 │   ├── routes - all endpoints handler of the project
 
 ```
+
+# Front-end
+
+<p> The front-end repository: https://github.com/GuilhermeBarroso-sys/BEFinances-web</p>
+<p> if you don't want to download the project to run locally, here a project preview on the web: https://befinances-web.vercel.app/ </p>
